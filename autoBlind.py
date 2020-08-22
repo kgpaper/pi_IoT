@@ -40,10 +40,12 @@ def readIlluminanceThread():
   while True:
     x = readIlluminance()
     print('{0} lux'.format(x))
+
     if x > 50:
         servo.ChangeDutyCycle(11.5)
     else:
         servo.ChangeDutyCycle(1.5)
+        
     time.sleep(1)
 
 print('starting BH1750')
