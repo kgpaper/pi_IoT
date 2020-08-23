@@ -9,6 +9,12 @@ GPIO.setup(SERVO_PIN, GPIO.OUT)
 servo = GPIO.PWM(SERVO_PIN, 50)
 servo.start(0)
 
+def blindRaise():
+    servo.ChangeDutyCycle(11.5)
+
+def blindLower():
+    servo.ChangeDutyCycle(1.5)
+
 try:
     while True:
         
