@@ -1,6 +1,7 @@
 import smbus
 import threading
 import time
+import test
 
 I2C_CH = 1
 BH1750_DEV_ADDR = 0x23
@@ -58,5 +59,7 @@ thd.daemon = True
 thd.start()
 # 키 입력 대기, 엔터 키가 입력이 되면 다음으로 넘어가서 'done'을 출력하고 프로그램 종료
 input()
+servo.stop()
+GPIO.cleanup()
 print('done')
 # 이때 쓰레드도 함께 종료 됨.
