@@ -1,7 +1,7 @@
 from socket import *
 from select import *
 
-HOST = '0'
+HOST = ''
 PORT = 10000
 BUFSIZE = 1024
 ADDR = (HOST, PORT)

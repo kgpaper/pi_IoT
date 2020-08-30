@@ -24,11 +24,19 @@
 						<h4>현재 온도 : / 현재 습도 : </h4>
 					</header>
 					<div class="features">
-						<div class="feature" onclick="location.href='/index';">
-							<i class="fa fa-diamond"></i>
-							<h3>LED ON</h3>
-							<p>현재 상테 : 전등 켜져있음</p>
-						</div>
+						{% if led == "ON" %}
+							<div class="feature" onclick="location.href='/light/off';">
+						{% else %}
+							<div class="feature" onclick="location.href='/light/on';">
+						{% endif %}
+								<i class="fa fa-diamond"></i>
+							{% if led == "ON" %}
+								<h3>LED OFF</h3>
+							{% else %}
+								<h3>LED ON</h3>
+							{% endif %}
+								<p>현재 상태 : {{led}}</p>
+							</div>
 						<div class="feature">
 							<i class="fa fa-copy"></i>
 							<h3>LED Auto</h3>
