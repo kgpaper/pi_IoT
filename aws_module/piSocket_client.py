@@ -3,6 +3,9 @@ from select import *
 import sys
 from time import ctime
 
+# aws : 3.34.181.150
+# pi : 116.124.174.82
+
 HOST = '116.124.174.82'
 PORT = 10000
 BUFSIZE = 1024

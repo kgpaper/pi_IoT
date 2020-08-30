@@ -1,12 +1,9 @@
 from flask import Flask, request, render_template
+import aws_module.light as light
 
 app = Flask(__name__)
 
 LEDC = "OFF"
-
-@app.route("/index")
-def index():
-    return render_template("tet.html")
 
 @app.route("/")
 def home():
