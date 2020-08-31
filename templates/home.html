@@ -24,29 +24,37 @@
 						<h4>현재 온도 : / 현재 습도 : </h4>
 					</header>
 					<div class="features">
-						{% if led == "ON" %}
-							<div class="feature" onclick="location.href='/light/off';">
-						{% else %}
+						{% if light == "OFF" %}
 							<div class="feature" onclick="location.href='/light/on';">
-						{% endif %}
 								<i class="fa fa-diamond"></i>
-							{% if led == "ON" %}
-								<h3>LED OFF</h3>
-							{% else %}
 								<h3>LED ON</h3>
-							{% endif %}
-								<p>현재 상태 : {{led}}</p>
+								<p>현재 상태 : {{light}}</p>
 							</div>
+						{% else %}
+							<div class="feature" onclick="location.href='/light/off';">
+								<i class="fa fa-diamond"></i>
+								<h3>LED OFF</h3>
+								<p>현재 상태 : {{light}}</p>
+							</div>
+						{% endif %}
 						<div class="feature">
 							<i class="fa fa-copy"></i>
 							<h3>LED Auto</h3>
 							<p>Auto</p>
 						</div>
-						<div class="feature">
-							<i class="fa fa-paper-plane-o"></i>
-							<h3>Blind Open</h3>
-							<p>현재 상태 : 걷힘</p>
-						</div>
+						{% if blind == "UP" %}
+							<div class="feature" onclick="location.href='/blind/down';">
+								<i class="fa fa-paper-plane-o"></i>
+								<h3>Blind Down</h3>
+								<p>현재 상태 : {{blind}}</p>
+							</div>
+						{% else %}
+							<div class="feature" onclick="location.href='/blind/up';">
+								<i class="fa fa-save"></i>
+								<h3>Blind Up</h3>
+								<p>현재 상태 : {{blind}}</p>
+							</div>
+						{% endif %}
 						<div class="feature">
 							<i class="fa fa-save"></i>
 							<h3>Blind Auto</h3>
@@ -63,7 +71,7 @@
 		<!-- Footer -->
 			<footer id="footer">
 				<div class="copyright">
-					&copy; Untitled. Design: <a href="http://templated.co/">TEMPLATED</a>.
+					&copy; 길도연 위광민 지다혜
 				</div>
 			</footer>
 
