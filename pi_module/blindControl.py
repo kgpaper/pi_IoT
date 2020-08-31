@@ -11,22 +11,22 @@ servo.start(0)
 
 def blindRaise():
     servo.ChangeDutyCycle(11.5)
-    servo.stop()
+    time.sleep(2)
+    
 
 def blindLower():
     servo.ChangeDutyCycle(1.5)
-    servo.stop()
+    time.sleep(2)
 
-try:
-    while True:
-        
-        servo.ChangeDutyCycle(6.5)
-        time.sleep(1)
-        servo.ChangeDutyCycle(11.5)
-        time.sleep(1)
-        servo.ChangeDutyCycle(1.5)
-        time.sleep(1)
+def auto():
+    try:
+        while True:
+            blindRaise()
+            blindLower()
 
-except KeyboardInterrupt:
-    servo.stop()
-    GPIO.cleanup()
+    except KeyboardInterrupt:  
+        servo.stop()
+        GPIO.cleanup()
+
+if __name__ == "__main__":
+    blindLower()

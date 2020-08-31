@@ -3,25 +3,43 @@ import aws_module.light as light
 
 app = Flask(__name__)
 
-LEDC = "OFF"
+LIGHT = "OFF"
+BLIND = "UP"
 
 @app.route("/")
 def home():
     templateData = {
-        'led' : LEDC
+        'light' : LIGHT,
+        'blind' : BLIND
     }
 
     return render_template("home.html", **templateData)
 
-@app.route("/light/<onoff>")
-def status(onoff):
-    if onoff == "on":
-        LEDC = "ON"
-    if onoff == "off":
-        LEDC = "OFF"
+@app.route("/light/<lighton>")
+def lightControl(lighton):
+    if lighton == "on":
+        LIGHT = "ON"
+    if lighton == "off":
+        LIGHT = "OFF"
 
     templateData = {
-        'led' : LEDC
+        'light' : LIGHT,
+        'blind' : BLIND
+    }
+
+    return render_template("home.html", **templateData)
+
+
+@app.route("/blind/<blindon>")
+def blindControl(blindon):
+    if blindon == "down":
+        BLIND = "DOWN"
+    if blindon == "up":
+        BLIND = "UP"
+
+    templateData = {
+        'light' : LIGHT,
+        'blind' : BLIND
     }
 
     return render_template("home.html", **templateData)
