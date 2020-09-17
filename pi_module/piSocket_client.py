@@ -6,7 +6,7 @@ from time import ctime
 # aws : 3.34.181.150
 # pi : 116.124.174.82
 
-HOST = '116.124.174.82'
+HOST = '0.0.0.0'
 PORT = 10000
 BUFSIZE = 1024
 ADDR = (HOST,PORT)
@@ -22,6 +22,6 @@ except Exception as e:
 
 print('connect is success')
 
-while True:
-    sendData = input("input data : ")
-    clientSocket.send(sendData.encode())
+sendData = input("input data : ")
+clientSocket.send(sendData.encode())
+clientSocket.close()

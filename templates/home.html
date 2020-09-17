@@ -24,7 +24,7 @@
 						<h4>현재 온도 : / 현재 습도 : </h4>
 					</header>
 					<div class="features">
-						{% if light == "OFF" %}
+						{% if light == "LIGHT OFF" %}
 							<div class="feature" onclick="location.href='/light/on';">
 								<i class="fa fa-diamond"></i>
 								<h3>LED ON</h3>
@@ -42,7 +42,7 @@
 							<h3>LED Auto</h3>
 							<p>Auto</p>
 						</div>
-						{% if blind == "UP" %}
+						{% if blind == "BLIND UP" %}
 							<div class="feature" onclick="location.href='/blind/down';">
 								<i class="fa fa-paper-plane-o"></i>
 								<h3>Blind Down</h3>

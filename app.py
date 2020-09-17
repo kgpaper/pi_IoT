@@ -1,10 +1,12 @@
 from flask import Flask, request, render_template
-import aws_module.light as light
+import aws_module.awsSocket_client as awsSocket_client
 
 app = Flask(__name__)
 
-LIGHT = "OFF"
-BLIND = "UP"
+awsSocket_client.connectPi()
+
+LIGHT = "LIGHT OFF"
+BLIND = "BLIND UP"
 
 @app.route("/")
 def home():
@@ -18,9 +20,9 @@ def home():
 @app.route("/light/<lighton>")
 def lightControl(lighton):
     if lighton == "on":
-        LIGHT = "ON"
+        LIGHT = "LIGHT ON"
     if lighton == "off":
-        LIGHT = "OFF"
+        LIGHT = "LIGHT OFF"
 
     templateData = {
         'light' : LIGHT,
@@ -33,9 +35,11 @@ def lightControl(lighton):
 @app.route("/blind/<blindon>")
 def blindControl(blindon):
     if blindon == "down":
-        BLIND = "DOWN"
+        BLIND = "BLIND DOWN"
+        awsSocket_client.toPi(BLIND)
     if blindon == "up":
-        BLIND = "UP"
+        BLIND = "BLIND UP"
+        awsSocket_client.toPi(BLIND)
 
     templateData = {
         'light' : LIGHT,

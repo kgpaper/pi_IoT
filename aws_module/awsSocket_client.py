@@ -5,23 +5,28 @@ from time import ctime
 
 # aws : 3.34.181.150
 # pi : 116.124.174.82
+def connectPi():
+    HOST = '0.0.0.0'
+    PORT = 10000
+    BUFSIZE = 1024
+    ADDR = (HOST,PORT)
 
-HOST = '116.124.174.82'
-PORT = 10000
-BUFSIZE = 1024
-ADDR = (HOST,PORT)
+    clientSocket = socket(AF_INET, SOCK_STREAM)  # 서버에 접속하기 위한 소켓을 생성한다.
 
-clientSocket = socket(AF_INET, SOCK_STREAM)  # 서버에 접속하기 위한 소켓을 생성한다.
+    try:
+        clientSocket.connect(ADDR)  # 서버에 접속을 시도한다.
 
-try:
-    clientSocket.connect(ADDR)  # 서버에 접속을 시도한다.
+    except Exception as e:
+        print('%s:%s' % ADDR)
+        sys.exit()
 
-except Exception as e:
-    print('%s:%s' % ADDR)
-    sys.exit()
+    print('connect is success')
 
-print('connect is success')
+def toPi(msg):
+    clientSocket.send(msg.encode())
 
-while True:
-    sendData = input("input data : ")
-    clientSocket.send(sendData.encode())
+if __name__ == "__main__":
+    connectPi()
+    while True:
+        sendData = input("input data : ")
+        toPi(sendData)

@@ -1,5 +1,6 @@
 from socket import *
 from select import *
+import blindControl
 
 HOST = ''
 PORT = 10000
@@ -28,8 +29,9 @@ while True:
     data = clientSocekt.recv(65535)
     print('recieve data : ',data.decode())
     msg = data.decode()
+    if msg == 'blind'
     if msg == 'exit': # exit라는 메세지를 받으면 종료
-        break;
+        break
 
 # 소켓 종료
 clientSocekt.close()
