@@ -1,32 +1,23 @@
-from socket import *
-from select import *
-import sys
-from time import ctime
-
-# aws : 3.34.181.150
-# pi : 116.124.174.82
-def connectPi():
-    HOST = '0.0.0.0'
-    PORT = 10000
-    BUFSIZE = 1024
-    ADDR = (HOST,PORT)
-
-    clientSocket = socket(AF_INET, SOCK_STREAM)  # 서버에 접속하기 위한 소켓을 생성한다.
-
-    try:
-        clientSocket.connect(ADDR)  # 서버에 접속을 시도한다.
-
-    except Exception as e:
-        print('%s:%s' % ADDR)
-        sys.exit()
-
-    print('connect is success')
+import socket 
 
 def toPi(msg):
-    clientSocket.send(msg.encode())
+    HOST = '0.0.0.0'
+    PORT = 10000
+    client_socket = socket.socket(socket.AF_INET,socket.SOCK_STREAM) 
+    client_socket.connect((HOST, PORT))
 
-if __name__ == "__main__":
-    connectPi()
-    while True:
-        sendData = input("input data : ")
-        toPi(sendData)
+    client_socket.send(msg.encode()) 
+    data = client_socket.recv(1024) 
+    print('Received from the server :',repr(data.decode())) 
+
+    client_socket.close() 
+    return data.decode()
+
+def connectStatus():
+    status = {'light':'', 'blind':''}
+    print(toPi('light'))
+    status['light'] = 'l'
+    print(status)
+    status['light'] = toPi('light')
+    status['blind'] = toPi('blind')
+    return status
